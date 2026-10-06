@@ -2,17 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ffd9e8">
+
   <title>A Little Secret For You 💗</title>
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: Georgia, "Times New Roman", serif;
       background: linear-gradient(145deg, #fff5f8, #ffe3ee, #fff8fb);
       color: #4d2636;
@@ -20,28 +26,40 @@
     }
 
     /* ---------- Screens ---------- */
+
     .screen {
       display: none;
       min-height: 100vh;
       align-items: center;
       justify-content: center;
-      padding: 22px 16px;
+      padding: 25px 16px;
       text-align: center;
     }
-    .screen.active { display: flex; }
+
+    .screen.active {
+      display: flex;
+    }
 
     .card {
       width: min(520px, 100%);
-      padding: 28px 18px;
+      padding: 30px 20px;
       border-radius: 30px;
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 15px 50px rgba(122, 53, 82, 0.12);
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 15px 50px rgba(122, 53, 82, 0.15);
       backdrop-filter: blur(10px);
     }
 
     /* ---------- Typography ---------- */
-    h1 { font-size: clamp(28px, 8vw, 44px); margin: 8px 0 12px; }
-    h2 { font-size: clamp(24px, 7vw, 36px); margin: 8px 0 15px; }
+
+    h1 {
+      font-size: clamp(28px, 8vw, 44px);
+      margin: 8px 0 12px;
+    }
+
+    h2 {
+      font-size: clamp(24px, 7vw, 36px);
+      margin: 8px 0 15px;
+    }
 
     p {
       font-size: 18px;
@@ -50,11 +68,24 @@
       max-width: 450px;
     }
 
-    .small   { font-size: 14px; opacity: 0.75; }
-    .emoji   { font-size: 55px; }
-    .message { font-size: clamp(23px, 6vw, 34px); font-weight: bold; line-height: 1.45; color: #6d2848; }
+    .small {
+      font-size: 14px;
+      opacity: 0.75;
+    }
 
-    /* ---------- Inputs & Buttons ---------- */
+    .emoji {
+      font-size: 55px;
+    }
+
+    .message {
+      font-size: clamp(23px, 6vw, 34px);
+      font-weight: bold;
+      line-height: 1.45;
+      color: #6d2848;
+    }
+
+    /* ---------- Input ---------- */
+
     input {
       width: 100%;
       padding: 16px;
@@ -64,68 +95,127 @@
       font-size: 18px;
       text-align: center;
       outline: none;
+      color: #4d2636;
     }
 
+    input:focus {
+      border-color: #e95d91;
+      box-shadow: 0 0 0 3px rgba(233, 93, 145, 0.12);
+    }
+
+    /* ---------- Buttons ---------- */
+
     button {
-      border: 0;
+      border: none;
       border-radius: 999px;
       padding: 14px 24px;
+      margin: 5px;
       font-size: 17px;
       font-weight: 700;
       background: #e95d91;
-      color: #fff;
+      color: white;
       box-shadow: 0 8px 20px rgba(233, 93, 145, 0.25);
       cursor: pointer;
+      transition: 0.2s ease;
     }
-    button:active { transform: scale(0.97); }
 
-    .error  { height: 25px; color: #c53c68; font-size: 14px; }
-    .no-msg { min-height: 32px; font-weight: bold; color: #b62d61; }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(233, 93, 145, 0.35);
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    .error {
+      min-height: 25px;
+      color: #c53c68;
+      font-size: 14px;
+    }
+
+    .no-msg {
+      min-height: 32px;
+      font-weight: bold;
+      color: #b62d61;
+      margin-top: 10px;
+    }
 
     /* ---------- Gift ---------- */
+
     .gift {
       display: inline-block;
       font-size: 110px;
       cursor: pointer;
       animation: bob 1.8s infinite;
+      user-select: none;
     }
-    @keyframes bob { 50% { transform: translateY(-10px) rotate(2deg); } }
+
+    @keyframes bob {
+      50% {
+        transform: translateY(-10px) rotate(2deg);
+      }
+    }
 
     /* ---------- Gallery ---------- */
+
     .gallery {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-top: 22px;
     }
+
     .memory {
-      background: #fff;
+      background: white;
       padding: 8px 8px 14px;
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 0 8px 25px rgba(80, 35, 55, 0.12);
+      overflow: hidden;
     }
+
     .memory img {
       display: block;
       width: 100%;
       aspect-ratio: 3 / 4;
       object-fit: cover;
-      border-radius: 5px;
+      border-radius: 7px;
+      background: #ffe3ee;
     }
-    .caption { font-size: 14px; margin-top: 9px; line-height: 1.35; }
 
-    /* ---------- Open When envelopes ---------- */
-    .envelopes { display: grid; gap: 12px; margin-top: 20px; }
+    .caption {
+      font-size: 14px;
+      margin-top: 9px;
+      line-height: 1.35;
+    }
+
+    /* ---------- Envelopes ---------- */
+
+    .envelopes {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
 
     .env {
       padding: 17px;
       border-radius: 18px;
-      background: #fff;
+      background: white;
       border: 1px solid #f2bfd2;
       text-align: left;
       cursor: pointer;
       box-shadow: 0 5px 18px rgba(100, 40, 65, 0.08);
+      transition: 0.2s ease;
     }
-    .env strong { display: block; font-size: 17px; }
+
+    .env:hover {
+      transform: translateY(-2px);
+    }
+
+    .env strong {
+      display: block;
+      font-size: 17px;
+    }
 
     .note {
       display: none;
@@ -135,205 +225,578 @@
       line-height: 1.5;
     }
 
-    /* ---------- Final screen ---------- */
+    /* ---------- Final ---------- */
+
     .final-photo {
+      display: block;
       width: 100%;
       margin: 18px 0;
       border-radius: 24px;
       box-shadow: 0 12px 35px rgba(90, 30, 60, 0.2);
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #ffe3ee;
     }
-    .signature { margin-top: 15px; font-size: 22px; font-weight: bold; color: #b13e6c; }
 
-    /* ---------- Floating hearts ---------- */
+    .signature {
+      margin-top: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #b13e6c;
+    }
+
+    /* ---------- Floating Hearts ---------- */
+
     .heart {
       position: fixed;
       bottom: -30px;
       opacity: 0.8;
       pointer-events: none;
       animation: float 6s linear infinite;
+      z-index: 0;
     }
-    @keyframes float { to { transform: translateY(-110vh); opacity: 0; } }
+
+    @keyframes float {
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+
+    /* ---------- Mobile ---------- */
+
+    @media (max-width: 500px) {
+      .card {
+        padding: 25px 15px;
+      }
+
+      .gallery {
+        gap: 9px;
+      }
+
+      .gift {
+        font-size: 90px;
+      }
+
+      button {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 
 <body>
+
   <div id="hearts"></div>
 
-  <!-- 1. Secret code -->
+  <!-- 1. SECRET CODE -->
   <section class="screen active" id="secret">
     <div class="card">
+
       <div class="emoji">🔐</div>
-      <div class="small">A LITTLE SECRET FOR YOU</div>
-      <h1>Only my bestie can unlock this… 🫶</h1>
-      <p>There's something waiting inside. 💗</p>
-      <input id="code" type="text" placeholder="Enter Secret Code" autocomplete="off">
-      <button onclick="unlock()">Unlock 💌</button>
-      <div class="error" id="error"></div>
-    </div>
-  </section>
 
-  <!-- 2. Gift -->
-  <section class="screen" id="gift">
-    <div class="card">
-      <div class="small">YOU UNLOCKED IT 🎉</div>
-      <h1>THIS IS FOR YOU 💗</h1>
-      <p>Tap the gift… 🎁</p>
-      <div class="gift" onclick="show('message')">🎁</div>
-    </div>
-  </section>
-
-  <!-- 3. Message -->
-  <section class="screen" id="message">
-    <div class="card">
-      <div class="emoji">💌</div>
-      <p class="message">No matter how many people I meet, you'll always have a special place in my heart. 💗🐒🫶</p>
-      <button onclick="show('memories')">Our Memories 📸</button>
-    </div>
-  </section>
-
-  <!-- 4. Memories -->
-  <section class="screen" id="memories">
-    <div class="card">
-      <h2>Our Memories 📸</h2>
-      <p class="small">Little moments. Big memories. Forever ours. 🫶</p>
-      <div class="gallery" id="gallery"></div>
-      <button style="margin-top:24px" onclick="show('openwhen')">Open When… 💌</button>
-    </div>
-  </section>
-
-  <!-- 5. Open When -->
-  <section class="screen" id="openwhen">
-    <div class="card">
-      <h2>Open When… 💌</h2>
-      <p class="small">Tap an envelope whenever you need it. 🥹</p>
-
-      <div class="envelopes">
-        <div class="env" onclick="toggleNote(this)">
-          <strong>🥹 Open when you miss me</strong>
-          <div class="note">Distance असलं तरी, तू माझ्यापासून कधीच दूर नाहीस. 🫶</div>
-        </div>
-        <div class="env" onclick="toggleNote(this)">
-          <strong>😔 Open when you're sad</strong>
-          <div class="note">आज smile करायची इच्छा नसली तरी चालेल… पण लक्षात ठेव, I'm always here. 🤍</div>
-        </div>
-        <div class="env" onclick="toggleNote(this)">
-          <strong>😂 Open when you need a smile</strong>
-          <div class="note">आपले वेडे moments आठव… आणि हसायला सुरुवात कर. 😂🐒</div>
-        </div>
-        <div class="env" onclick="toggleNote(this)">
-          <strong>💗 Open when you want to know what you mean to me</strong>
-          <div class="note">You're not just a friend. You're one of those people I never want to lose. 🥹</div>
-        </div>
-        <div class="env" onclick="toggleNote(this)">
-          <strong>💌 Open when you reach the end…</strong>
-          <div class="note">One last little question is waiting for you… 👀</div>
-        </div>
+      <div class="small">
+        A LITTLE SECRET FOR YOU
       </div>
 
-      <button style="margin-top:20px" onclick="show('question')">One Last Question 💗</button>
+      <h1>
+        Only my bestie can unlock this… 🫶
+      </h1>
+
+      <p>
+        There's something waiting inside. 💗
+      </p>
+
+      <input
+        id="code"
+        type="text"
+        placeholder="Enter Secret Code"
+        autocomplete="off"
+      >
+
+      <button onclick="unlock()">
+        Unlock 💌
+      </button>
+
+      <div class="error" id="error"></div>
+
     </div>
   </section>
 
-  <!-- 6. Question -->
+
+  <!-- 2. GIFT -->
+  <section class="screen" id="gift">
+    <div class="card">
+
+      <div class="small">
+        YOU UNLOCKED IT 🎉
+      </div>
+
+      <h1>
+        THIS IS FOR YOU 💗
+      </h1>
+
+      <p>
+        Tap the gift… 🎁
+      </p>
+
+      <div
+        class="gift"
+        onclick="showScreen('message')"
+        role="button"
+        aria-label="Open gift"
+      >
+        🎁
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- 3. MESSAGE -->
+  <section class="screen" id="message">
+    <div class="card">
+
+      <div class="emoji">💌</div>
+
+      <p class="message">
+        No matter how many people I meet,
+        you'll always have a special place
+        in my heart. 💗🐒🫶
+      </p>
+
+      <button onclick="showScreen('memories')">
+        Our Memories 📸
+      </button>
+
+    </div>
+  </section>
+
+
+  <!-- 4. MEMORIES -->
+  <section class="screen" id="memories">
+    <div class="card">
+
+      <h2>
+        Our Memories 📸
+      </h2>
+
+      <p class="small">
+        Little moments. Big memories. Forever ours. 🫶
+      </p>
+
+      <div
+        class="gallery"
+        id="gallery"
+      ></div>
+
+      <button
+        style="margin-top:24px"
+        onclick="showScreen('openwhen')"
+      >
+        Open When… 💌
+      </button>
+
+    </div>
+  </section>
+
+
+  <!-- 5. OPEN WHEN -->
+  <section class="screen" id="openwhen">
+    <div class="card">
+
+      <h2>
+        Open When… 💌
+      </h2>
+
+      <p class="small">
+        Tap an envelope whenever you need it. 🥹
+      </p>
+
+      <div class="envelopes">
+
+        <div class="env" onclick="toggleNote(this)">
+          <strong>
+            🥹 Open when you miss me
+          </strong>
+
+          <div class="note">
+            Distance असलं तरी, तू माझ्यापासून कधीच दूर नाहीस. 🫶
+          </div>
+        </div>
+
+
+        <div class="env" onclick="toggleNote(this)">
+          <strong>
+            😔 Open when you're sad
+          </strong>
+
+          <div class="note">
+            आज smile करायची इच्छा नसली तरी चालेल…
+            पण लक्षात ठेव, I'm always here. 🤍
+          </div>
+        </div>
+
+
+        <div class="env" onclick="toggleNote(this)">
+          <strong>
+            😂 Open when you need a smile
+          </strong>
+
+          <div class="note">
+            आपले वेडे moments आठव…
+            आणि हसायला सुरुवात कर. 😂🐒
+          </div>
+        </div>
+
+
+        <div class="env" onclick="toggleNote(this)">
+          <strong>
+            💗 Open when you want to know what you mean to me
+          </strong>
+
+          <div class="note">
+            You're not just a friend.
+            You're one of those people I never want to lose. 🥹
+          </div>
+        </div>
+
+
+        <div class="env" onclick="toggleNote(this)">
+          <strong>
+            💌 Open when you reach the end…
+          </strong>
+
+          <div class="note">
+            One last little question is waiting for you… 👀
+          </div>
+        </div>
+
+      </div>
+
+      <button
+        style="margin-top:20px"
+        onclick="showScreen('question')"
+      >
+        One Last Question 💗
+      </button>
+
+    </div>
+  </section>
+
+
+  <!-- 6. QUESTION -->
   <section class="screen" id="question">
     <div class="card">
-      <div class="emoji">🥹</div>
-      <h2>Would you still choose me as your bestie?</h2>
-      <p class="small">Think carefully… 😌</p>
-      <button onclick="show('final')">YES 💗</button>
-      <button onclick="nope()">NO 😈</button>
-      <div class="no-msg" id="noMsg"></div>
+
+      <div class="emoji">
+        🥹
+      </div>
+
+      <h2>
+        Would you still choose me as your bestie?
+      </h2>
+
+      <p class="small">
+        Think carefully… 😌
+      </p>
+
+      <button onclick="showScreen('final')">
+        YES 💗
+      </button>
+
+      <button onclick="nope()">
+        NO 😈
+      </button>
+
+      <div
+        class="no-msg"
+        id="noMsg"
+      ></div>
+
     </div>
   </section>
 
-  <!-- 7. Final -->
+
+  <!-- 7. FINAL -->
   <section class="screen" id="final">
     <div class="card">
-      <div style="font-size:45px">🥹💌</div>
-      <h2>And just one last thing…</h2>
-      <p class="message" style="font-size:23px">
+
+      <div style="font-size:45px">
+        🥹💌
+      </div>
+
+      <h2>
+        And just one last thing…
+      </h2>
+
+      <p
+        class="message"
+        style="font-size:23px"
+      >
         Thank you for being my person.<br>
-        For every laugh, every stupid moment, every memory…<br>
-        I'm genuinely lucky to have you. 🫶<br><br>
+        For every laugh, every stupid moment,
+        every memory…<br>
+        I'm genuinely lucky to have you. 🫶
+        <br><br>
         In every version of my life,<br>
         I hope I find you again. ♾️
       </p>
-      <img id="finalPhoto" class="final-photo" alt="Our special memory">
-      <div class="signature">Forever &amp; always, bestie. 💗🐒♾️</div>
+
+      <img
+        id="finalPhoto"
+        class="final-photo"
+        alt="Our special memory"
+      >
+
+      <div class="signature">
+        Forever &amp; always, bestie. 💗🐒♾️
+      </div>
+
     </div>
   </section>
 
+
   <script>
-    // ---------- Settings ----------
+
+    /* ==========================================
+       SECRET CODE
+       ========================================== */
+
     const SECRET_CODE = "khulpawya";
 
+
+    /* ==========================================
+       PHOTOS
+
+       IMPORTANT:
+       Put these files inside /images folder
+       ========================================== */
+
     const photos = [
-      { src: "images/1.jpg", caption: "Just us, being us. 🫶" },
-      { src: "images/2.jpg", caption: "A moment I'll always keep. 💗" },
-      { src: "images/3.jpg", caption: "Some memories never fade. ✨" },
-      { src: "images/4.jpg", caption: "No words, just us. 🤍" },
-      { src: "images/5.jpg", caption: "Forever grateful for this. 🥹" },
-      { src: "images/6.jpg", caption: "My favorite kind of chaos. 🐒" },
-      { src: "images/7.jpg", caption: "One memory, a thousand feelings. 💗" }
+      {
+        src: "images/1.jpg",
+        caption: "Just us, being us. 🫶"
+      },
+      {
+        src: "images/2.jpg",
+        caption: "A moment I'll always keep. 💗"
+      },
+      {
+        src: "images/3.jpg",
+        caption: "Some memories never fade. ✨"
+      },
+      {
+        src: "images/4.jpg",
+        caption: "No words, just us. 🤍"
+      },
+      {
+        src: "images/5.jpg",
+        caption: "Forever grateful for this. 🥹"
+      },
+      {
+        src: "images/6.jpg",
+        caption: "My favorite kind of chaos. 🐒"
+      },
+      {
+        src: "images/7.jpg",
+        caption: "One memory, a thousand feelings. 💗"
+      }
     ];
 
-    // ---------- Build gallery ----------
-    document.getElementById("gallery").innerHTML = photos
-      .map(p => `
+
+    /* ==========================================
+       CREATE GALLERY
+       ========================================== */
+
+    const gallery = document.getElementById("gallery");
+
+    gallery.innerHTML = photos.map(function(photo) {
+
+      return `
         <div class="memory">
-          <img src="${p.src}" alt="Bestie memory" loading="lazy">
-          <div class="caption">${p.caption}</div>
-        </div>`)
-      .join("");
 
-    document.getElementById("finalPhoto").src = photos[0].src;
+          <img
+            src="${photo.src}"
+            alt="Bestie memory"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          >
 
-    // ---------- Navigation ----------
-    function show(id) {
-      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      window.scrollTo(0, 0);
+          <div class="caption">
+            ${photo.caption}
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+
+    /* ==========================================
+       FINAL PHOTO
+       ========================================== */
+
+    const finalPhoto =
+      document.getElementById("finalPhoto");
+
+    finalPhoto.src = photos[0].src;
+
+    finalPhoto.onerror = function() {
+      this.style.display = "none";
+    };
+
+
+    /* ==========================================
+       SCREEN NAVIGATION
+       ========================================== */
+
+    function showScreen(id) {
+
+      const screens =
+        document.querySelectorAll(".screen");
+
+      screens.forEach(function(screen) {
+        screen.classList.remove("active");
+      });
+
+      const target =
+        document.getElementById(id);
+
+      if (target) {
+        target.classList.add("active");
+      }
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
 
-    // ---------- Secret code ----------
+
+    /* ==========================================
+       SECRET CODE
+       ========================================== */
+
     function unlock() {
-      const value = document.getElementById("code").value.trim().toLowerCase();
+
+      const input =
+        document.getElementById("code");
+
+      const error =
+        document.getElementById("error");
+
+      const value =
+        input.value.trim().toLowerCase();
+
       if (value === SECRET_CODE) {
-        show("gift");
+
+        error.textContent = "";
+
+        showScreen("gift");
+
       } else {
-        document.getElementById("error").textContent = "Hmm… that's not our secret 😏 Try again!";
+
+        error.textContent =
+          "Hmm… that's not our secret 😏 Try again!";
+
+        input.focus();
       }
     }
 
-    document.getElementById("code").addEventListener("keydown", e => {
-      if (e.key === "Enter") unlock();
-    });
 
-    // ---------- Open When notes ----------
-    function toggleNote(el) {
-      const note = el.querySelector(".note");
-      note.style.display = note.style.display === "block" ? "none" : "block";
+    /* ==========================================
+       ENTER KEY
+       ========================================== */
+
+    document
+      .getElementById("code")
+      .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+          unlock();
+        }
+
+      });
+
+
+    /* ==========================================
+       OPEN WHEN NOTES
+       ========================================== */
+
+    function toggleNote(element) {
+
+      const note =
+        element.querySelector(".note");
+
+      if (!note) {
+        return;
+      }
+
+      if (note.style.display === "block") {
+
+        note.style.display = "none";
+
+      } else {
+
+        note.style.display = "block";
+
+      }
     }
 
-    // ---------- NO button ----------
+
+    /* ==========================================
+       NO BUTTON
+       ========================================== */
+
     function nope() {
-      document.getElementById("noMsg").textContent =
+
+      const message =
+        document.getElementById("noMsg");
+
+      message.textContent =
         "Excuse me?! 😭😂 You don't have a choice. You're stuck with me forever! 🐒♾️";
+
     }
 
-    // ---------- Floating hearts ----------
-    const emojis = ["💗", "🫶", "💕", "✨"];
-    const heartsBox = document.getElementById("hearts");
+
+    /* ==========================================
+       FLOATING HEARTS
+       ========================================== */
+
+    const emojis = [
+      "💗",
+      "🫶",
+      "💕",
+      "✨"
+    ];
+
+    const heartsBox =
+      document.getElementById("hearts");
 
     for (let i = 0; i < 16; i++) {
-      const h = document.createElement("span");
-      h.className = "heart";
-      h.textContent = emojis[i % emojis.length];
-      h.style.left = Math.random() * 100 + "%";
-      h.style.animationDelay = Math.random() * 5 + "s";
-      h.style.fontSize = 14 + Math.random() * 18 + "px";
-      heartsBox.appendChild(h);
+
+      const heart =
+        document.createElement("span");
+
+      heart.className = "heart";
+
+      heart.textContent =
+        emojis[i % emojis.length];
+
+      heart.style.left =
+        Math.random() * 100 + "%";
+
+      heart.style.animationDelay =
+        Math.random() * 5 + "s";
+
+      heart.style.fontSize =
+        14 + Math.random() * 18 + "px";
+
+      heartsBox.appendChild(heart);
     }
+
   </script>
+
 </body>
 </html>
